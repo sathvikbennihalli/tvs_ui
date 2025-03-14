@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="team-review-container">
+  <div class="header-container">
+    <h2 class="heading">Team’s Review FY 2024 - 25</h2>
+    <div class="search-container">
+      <label for="search">Search By</label>
+      <div class="custom-search">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="search" placeholder="Type Employee ID or Name" />
+      </div>
+      <button class="go-to-self"><i class="fas fa-user"></i> Go to Self</button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="review-table">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Number</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.number }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.type }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>Your Role</th>
+      <td mat-cell *matCellDef="let employee">{{ employee.role }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td
+        mat-cell
+        *matCellDef="let employee"
+        [ngClass]="employee.status | statusFormatter"
+      >
+        {{ employee.status }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let employee">
+        <a href="#" class="action-link">{{ employee.action }}</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<app-footer></app-footer>
